@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+service StreamExample {
+  rpc SendData (SendDataRequest) returns (stream SendDataResponse);
+  rpc SendQuotation (QuotationRequest) returns (stream QuotationNotify);
+}
+
+message SendDataRequest {
+  int32 num_messages = 1;
+}
+
+message QuotationRequest {
+  string message = 1;
+}
+
+message QuotationNotify {
+  float price = 1;
+  string message = 2;
+}
+
+message SendDataResponse {
+  string message = 1;
+}
